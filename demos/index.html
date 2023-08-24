@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./demo.css"/>
+        <script src="../src/wakjs.js"></script>
+        <script src="../library/wak_precooked.js"></script>
+        <script src="./demo.js"></script>
+        <script>WAKjs.registerFunction("refresh", function reloadPage() {window.location.reload(true);});</script>
+    </head>
+    <body class="m-0">
+        <header class="mainMenu relative flex gap-4 text-white bg-green-600 py-4 justify-center font-bold mb-4">
+            <div>
+                <span wak_ref="d2" wak_types="dropdownmenu" class="cursor-pointer relative active">Example
+                    <div wak_name="d2" class="menu-ss102" wak_types="dropdown">
+                        <ul class="list-none m-0 whitespace-nowrap px-0">
+                            <Items>
+                                <li>Submenu1</li>
+                            </Items>
+                        </ul>
+                    </div>
+                </span>
+                <span wak_ref="d2" wak_types="dropdownmenu" class="cursor-pointer relative">Menu
+                    <div wak_name="d2" class="menu-ss102" wak_types="dropdown">
+                        <ul class="list-none m-0 whitespace-nowrap px-0">
+                            <Items>
+                                <li>First item</li>
+                                <li>Second item</li>
+                            </Items>
+                        </ul>
+                    </div>
+                </span>
+                <span wak_ref="d2" wak_types="dropdownmenu" class="cursor-pointer relative">DropDownMenu
+                    <div wak_name="d2" class="menu-ss102" wak_types="dropdown">
+                        <ul class="list-none m-0 whitespace-nowrap px-0">
+                            <Items>
+                                <li>Submenu2</li>
+                            </Items>
+                        </ul>
+                    </div>
+                </span>
+                <span class="cursor-pointer relative" wak_types="dropdownmenu">No Drop</span>
+            </div>
+            <input class="text-blue-700 cursor-pointer rounded-lg px-2" type="button" value="Refresh" wak_action="refresh"/>
+        </header>
+        <content class="flex flex-wrap px-4 minh-50vh" wak_types="XYGroup">
+            <ul class="list-none flex flex-col gap-2 cursor-pointer mr-4 highlightlist">
+                <li wak_types="grpX" name="todos" class="active">TODO List</li>
+                <li wak_types="grpX" wak_args=",flex" name="abc">ABCGroups</li>
+                <li wak_types="grpX" name="act">Actions</li>
+                <li wak_types="grpX" name="mnu">Menus</li>
+                <li wak_types="grpX" name="xyg">XYGroups</li>
+                <li wak_types="grpX" name="cust">Custom Actions</li>
+            </ul>
+            <div class="isection" wak_types="grpY" name="todos">
+                <h3 class="border-b-2 border-blue-700 mb-4">ToDo List</h3>
+                <ul class="list-check">
+                    <li class="relative my-1 highlightblock-ss100 bg-green-700 text-white py-2">WAKJS Code
+                        <ul slot="ul" class="list-check ml-4">
+                            <li>Sync up tape with actions with refcalls</li>
+                            <li>Complete WAK func attr autowiring</li>
+                            <li>Speed up processing! 😫😱</li>
+                            <li>Streamline action vs key function vs elem function setting</li>
+                            <li class="checked">Auto repeat tape and refcall when actions outnumber them</li>
+                            <li class="checked">Add enable/disable to events</li>
+                            <li class="checked">Fix tab example/code for simple tab version</li>
+                            <li class="checked">Add simple action function for registered functions.
+                        </ul>
+                    </li>
+                    <li class="relative my-1 highlightblock-ss100 checked bg-pink-700 text-white">Element Creator
+                        <ul slot="ul" class="list-check ml-4">
+                            <li class="checked">Integrate elementCreator code</li>
+                        </ul>
+                    </li>
+                    <li class="relative my-1 highlightblock-ss100 checked bg-orange-400">Demo HTML
+                        <ul slot="ul" class="list-check ml-4">
+                            <li class="checked" id="t1">Create navigation menu based on simple tabs</li>
+                        </ul>
+                    </li>
+                    <li class="relative my-1 highlightblock-ss100 bg-indigo-300">PreCooked
+                        <ul slot="ul" class="list-check ml-4">
+                            <li class="">Fix XYGroup sublevel selections</li>
+                            <li class="checked">Create equivalent for side bar navigation</li>
+                            <li class="checked">Create top-bar menu functionality</li>
+                            <li class="checked">Fix issue with outside click events</li>
+                            <li class="checked">Replace tabs with grpA grpB functionality</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="isection flex-col gap-2 hidden" wak_types="grpY" name="abc">
+                <h3 class="border-b-2 border-blue-700 mb-4">Test Area1: Action Templates</h3>
+                <div wak_types="ABGroup" class="mb-2">
+                    <h4 class="my-0 border-b border-green-600">ABGroup Examples</h4>
+                    <div class="tabs">
+                        <div class="tab1 active" name="1" wak_types="grpA">Tab 1</div>
+                        <div class="tab1" name="2" wak_types="grpA">Tab 2</div>
+                        <div class="tab1" name="3" wak_types="grpA">Tab 3</div>
+                        <div class="tab1" name="4" wak_types="grpA">Tab 4</div>
+                    </div>
+                    <div class="border border-blue-700">
+                        <div class="tabContent active" wak_types="grpB" name="1">ABGroups</div>
+                        <div class="tabContent" wak_types="grpB" name="2">default to setting the</div>
+                        <div class="tabContent" wak_types="grpB" name="3"><p>toggled classes</p>
+                            <p>as "active"</p>
+                        </div>
+                        <div class="tabContent" wak_types="grpB" name="4">Will update this with a default ABGroup setting</div>
+                    </div>
+                    <div class="tabs my-2">
+                        <div class="tab2 active" wak_types="grpA" name="1">Tab 5</div>
+                        <div class="tab2" wak_types="grpA" name="2">Tab 6</div>
+                        <div class="tabContent w-3/5 border border-red-700 active" wak_types="grpB" name="1">This is an ABGroup</div>
+                        <div class="tabContent w-3/5 border border-red-700" wak_types="grpB" name="2">without a parent ABGroup typed element</div>
+                    </div>
+                </div>
+                <div wak_types="BCGroup" wak_args="selected" class="mb-2">
+                    <h4 class="my-0 border-b border-green-600">BCGroup Example</h4>
+                    <div class="tabs">
+                        <div class="tab1 selected" name="1" wak_types="grpC">Tab 1</div>
+                        <div class="tab1" name="2" wak_types="grpC">Tab 2</div>
+                        <div class="tab1" name="3" wak_types="grpC">Tab 3</div>
+                        <div class="tab1" name="4" wak_types="grpC">Tab 4</div>
+                    </div>
+                    <div class="border border-blue-700">
+                        <div class="tabContent selected" wak_types="grpB" name="1">BCGroups allow</div>
+                        <div class="tabContent" wak_types="grpB" name="2">overriding the class</div>
+                        <div class="tabContent" wak_types="grpB" name="3"><p>by setting the BCGroup elem</p>
+                            <p>via the wak_args attribute</p>
+                        </div>
+                        <div class="tabContent border border-red-600" wak_types="grpB" name="4">Maybe very redundant: 🤷</div>
+                    </div>
+                </div>
+                <ul wak_types="ABGroup" class="list-none w-3/4 flex flex-col">
+                    <li class="mitem" name="5" wak_types="grpA"><span>Page 1</span>
+                        <div class="tabContent" wak_types="grpB" name="5">I'm a div element</div>
+                    </li>
+                    <li class="mitem" name="6" wak_types="grpA"><span>Page 2</span>
+                        <ul class="tabContent" wak_types="grpB" name="6">
+                            <li>This is a list</li>
+                            <li>with more content</li>
+                            <li>and better text</li>
+                            <li>than before</li>
+                        </ul>
+                    </li>
+                    <li class="mitem" name="7" wak_types="grpA"><span>Page 3</span>
+                        <ul class="tabContent list-disc" wak_types="grpB" name="7">
+                            <li>I could be a submenu</li>
+                            <li>If i wanted to be</li>
+                        </ul>
+                    </li>
+                    <li name="8" class="mitem" wak_types="grpA"><span>Page 4: No content, no problem</span></li>
+                </ul>
+            </div>
+            <div class="isection hidden" wak_types="grpY" name="act">
+                <h3 class="border-b-2 border-blue-700 mb-4">Test Area2: Waktions</h3>
+                <div class="textDecoration disable-select" wak_types="randomDecColor" wak_args="wavy overline underline blue">Make some waves</div>
+                <section>
+                    <input type="text" id="decdef" value="wavy overline blue"/>
+                    <p onclick="callDec(this)">Click on me! This uses the normal onclick attrib</p>
+                </section>
+                <section>
+                    <input type="text" value="solid underline 2px red"/>
+                    <p id="ftest" wak_action="callDec(this)">Click on me too: This uses the `wak_action` attrib. It can also locate window level functions to use as the action.</p>
+                </section>
+                <h4 class="my-2 border-b border-green-600">Simple Action Examples</h4>
+                <input class="text-red-700 cursor-pointer px-2" type="button" value="DisableEvent" wak_action="toggleEvent(this)"/>
+                <input class="text-blue-700 cursor-pointer rounded-lg px-2" type="button" value="Elem" wak_action="createNewBox"/>
+                <div id="createSpace"></div>
+            </div>
+            <div class="isection hidden" wak_types="grpY" name="mnu">
+                <h3 class="border-b-2 border-blue-700 mb-4">Test Area3: Menus</h3>
+                <section>
+                    <ul class="smenu">
+                        <li class="active"><span>Page 1</span></li>
+                        <li><span>Page 2</span>
+                            <ul>
+                                <li>Page2 Section1</li>
+                                <li>Page2 Section2</li>
+                                <li>Page2 Section3</li>
+                                <li>Page2 Section4</li>
+                            </ul>
+                        </li>
+                        <li><span>Page 3</span>
+                            <ul>
+                                <li>Page3 Section1</li>
+                                <li>Page3 Section2</li>
+                            </ul>
+                        </li>
+                        <li><span>Page 4</span></li>
+                    </ul>
+                </section>
+            </div>
+            <div class="isection hidden" wak_types="grpY" name="xyg">
+                <h3 class="border-b-2 border-blue-700 mb-4">Test Area4: XYGroups</h3>
+                <h5>Fix issue with nested XYGroups</h5>
+                <div wak_types="XYGroup" class="w-3/4 flex flex-col">
+                    <ul class="list-none flex ml-0">
+                        <li class="mitem cursor-pointer" name="0" wak_types="grpX"><span>C1</span></li>
+                        <li class="mitem cursor-pointer" name="1" wak_types="grpX"><span>C2</span></li>
+                        <li class="mitem cursor-pointer" name="2" wak_types="grpX"><span>C3</span></li>
+                    </ul>
+                    <div class="" wak_types="grpY" name="0">
+            Content for 1
+                    </div>
+                    <div class="hidden" wak_types="grpY" name="1">
+            Content for 2
+                    </div>
+                    <div class="hidden" wak_types="grpY" name="2">
+            Content for 3
+                    </div>
+                </div>
+            </div>
+            <div class="isection hidden" wak_types="grpY" name="cust">
+                <h4 class="mb-2 border-b border-green-600">Toggle Class Example
+                    <input type="button" class="px-2 ml-2" value="Disable" title="Enable/disable highlight function and refresh." wak_action="toggleEnabledFs(this)"/>
+                </h4>
+                <div id="highlights" class="flex gap-2">
+                    <div class="flex flex-col gap-2 pr-2 border-r border-slate-800">
+                        <input type="button" class="cursor-pointer px-2" name="1" wak_types="typeHighlight" value="Highlight1"/>
+                        <div class="select-none cursor-pointer px-2" name="2" wak_types="typeHighlight">Highlight2</div>
+                    </div>
+                    <div class="highlightArea" wak_types="rHighlight" name="1">Area 1</div>
+                    <span class="highlightArea" wak_types="rHighlight" name="2">Area 2</span>
+                </div>
+            </div>
+        </content>
+    </body>
+</html>
