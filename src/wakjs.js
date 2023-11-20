@@ -1084,7 +1084,7 @@ class WAKjs {
 
 
     // READ QUERY FOR GATHERING REFERENCES
-    static #readQuery(currentSource, atape, i, waktape) {
+    static #readQuery(currentSource, atape, i, waktape, tmp, vmap) {
         let querySources = {"elem":waktape.element,
                             "event":waktape.event,
                             "target":waktape.event.target,
@@ -1094,7 +1094,8 @@ class WAKjs {
                             "e":waktape.element,
                             "v":waktape.event,
                             "d":waktape.document,
-                            "w":waktape.window}
+                            "w":waktape.window
+                           }
 
         let result = [];
         let selectAll = (atape[i+1] == "a" || atape[i+1] == "all")
@@ -1106,6 +1107,7 @@ class WAKjs {
         case "q":
         case "query":
             usedQuery = true;
+            if (query.startsWith("$")) query = vmap[query];
             if (query.startsWith("'")) query = query.substring(1);
             if (query.endsWith("'")) query = query.substring(0,query.length -1);
             if (selectAll) {
@@ -1113,6 +1115,11 @@ class WAKjs {
             } else {
                 result = currentSource.querySelector(query);
             }
+            break;
+        case "closest":
+            usedQuery = true;
+            if (query.startsWith("$")) query = vmap[query];
+            result = currentSource.closest(query);
             break;
         case "@":
         case "attrib":
@@ -1142,7 +1149,7 @@ class WAKjs {
             result = currentSource.children[index];
             break;
         default:
-            if (!currentSource) currentSource = querySources[atape[i]];
+            if (atape[i]) currentSource = querySources[atape[i]];
             result = currentSource;
             break;
         }
@@ -1188,6 +1195,7 @@ class WAKjs {
         if (!$WUtils.isArray(atape)) return;
 
         let tmp   = [];
+        let vmap  = {};
         let queryResult = undefined;
         let source      = undefined;
         let haveSource  = undefined;
@@ -1216,7 +1224,15 @@ class WAKjs {
                     target = tmp;
                     break;
                 default:
-                    target = undefined;
+                    if (ttarget.startsWith("$")) {
+                        let tsource = (!source) ? tmp[tmp.length -1] : source;
+                        vmap[ttarget] = tsource;
+                        tmp.pop();
+                        queryResult = tmp[tmp.length-1];
+                        source = undefined;
+                    } else {
+                        target = undefined;
+                    }
                     break;
                 }
                 break;
@@ -1227,7 +1243,7 @@ class WAKjs {
             default:
                 haveSource = false;
                 let lsource = tmp[tmp.length -1];
-                [queryResult,i] = WAKjs.#readQuery(queryResult, atape, i, waktape);
+                [queryResult,i] = WAKjs.#readQuery(queryResult, atape, i, waktape, tmp, vmap);
                 tmp.push(queryResult);
                 break;
             }
@@ -1461,8 +1477,6 @@ class WAKjs {
 
 
 const $W = $WUtils;
-const $ώ = $WUtils;
-const $Ω = WAKjs;
 
 
 window.addEventListener("DOMContentLoaded", (event) => {
